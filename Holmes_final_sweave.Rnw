@@ -1,0 +1,80 @@
+\documentclass[12 pt]{article}
+\usepackage{titlesec}
+	%\titleformat*{\section}{\large\sc\underline}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{titling}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{rotating}
+\usepackage[letterpaper, portrait, margin=1.5 in]{geometry}
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{csquotes}
+\usepackage{apacite}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{listings}
+\title{Do corporate tax rates depress international investment?\\\large Quantitative Methods II Term Paper}
+\author{Joshua S. Holmes}
+\date{April 18, 2018}
+\begin{document}
+\maketitle
+\SweaveOpts{concordance=TRUE}
+<<setup,echo=false>>=
+library(ggplot2)
+library(lmtest)
+library(stargazer)
+Agg<-read.csv('C:/Users/jshol/Dropbox/Quantitative Methods/Quant II/Final Paper/QuantII_Final_Repo-master/AggFDIData.csv')
+dat<-read.csv('C:/Users/jshol/Dropbox/Quantitative Methods/Quant II/Final Paper/QuantII_Final_Repo-master/Copy of BilateralFDI.csv')
+Bilat<-na.omit(dat)
+@
+
+The following analysis examines the association between corporate tax rates and Foreign Direct Investment by testing the hypothesis in the null form:
+\begin{quote}
+\textit{There is no relationship between the corporate tax rate of a country and the amount of FDI that country attracts}
+\end{quote}
+
+\section*{Data}
+<<Data and Descriptive Stats>>=
+mean(Bilat$FDIFlowsIn)
+sd(Bilat$FDIFlowsIn)
+hist(log(Bilat$FDIFlowsIn))
+
+BiCor <- cor(Bilat$LOGFDIFlowIn,Bilat$LOGFDISTOCK)
+@
+The principal explanatory variable in this study is the corporate tax rate of a host country.  To reduce variability in the amount of taxes that individual 
+
+Traditionally, Foreign Direct Investment is distinguished by 
+
+It is conceivable that taxation may affect these
+
+however, the two tend to be highly correlated (the Pearson's R of the average values of FDI stock and capital inflows in this study is  \Sexpr{round(cor(Agg$AvStockIn,Agg$AvCapIn),2)})
+
+
+\section{Aggregate Inflows}
+
+
+\section{Bilateral Tests}
+
+
+To this point, I have assessed the relationship between FDI Inflows and Tax Rates without consideration of the source of 
+
+These findings are interesting, as they suggest that tax rates are not prohibitive to investment, however they may not fully account for certain nuances in the source of that investment. Does the difference in tax rates between a host and source country affect the amount of investment that a host attracts?  
+
+
+Inline code test \Sexpr{round(BiCor,2)}
+
+
+\section*{Code Appendix}
+
+
+
+
+
+
+
+\end{document}
